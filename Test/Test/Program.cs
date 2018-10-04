@@ -14,14 +14,24 @@ namespace Test
         
         static void Main(string[] args)
         {
-         
+            bool TaskIsRunning = true;
+            string UserText;
             Functional functional = new Functional();
+            Console.WriteLine("Enter exit to close program\n");
             Console.WriteLine("Enter your text: ");
-            
             functional.TextCheckerEvent += ShowMessage;
-            functional.TextCheck(Console.ReadLine());
-            functional.CounterShow();
-            Console.ReadLine();
+
+            while (TaskIsRunning)
+            {
+                UserText = Console.ReadLine();
+                if (UserText == "exit")
+                {
+                    TaskIsRunning = false;
+                    break;
+                }
+                functional.TextCheck(UserText);
+                functional.CounterShow();
+            }
         }
 
         public static void ShowMessage(string message)
